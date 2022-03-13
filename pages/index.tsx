@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { useState } from 'react';
 import PlayerSummary from '../components/PlayerSummary';
 import RecentMatches from '../components/RecentMatches';
-import UsernameInput from '../components/usernameInput';
+import UsernameInput from '../components/UsernameInput';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
