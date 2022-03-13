@@ -4,9 +4,15 @@ interface Props {
     setIsLoaded: Function;
     setPlayerData: Function;
     setMmrData: Function;
+    setRecentMatchData: Function;
 }
 
-const UsernameInput = ({ setIsLoaded, setPlayerData, setMmrData }: Props) => {
+const UsernameInput = ({
+    setIsLoaded,
+    setPlayerData,
+    setMmrData,
+    setRecentMatchData,
+}: Props) => {
     const [isCurrentlyLoading, setIsCurrentLoading] = useState(false);
 
     const runQuery = async (event: any) => {
@@ -25,6 +31,13 @@ const UsernameInput = ({ setIsLoaded, setPlayerData, setMmrData }: Props) => {
             getMmrData(event.target.username.value, event.target.tagline.value)
         );
 
+        promises.push(
+            getRecentMatchData(
+                event.target.username.value,
+                event.target.tagline.value
+            )
+        );
+
         Promise.all(promises).then(() => {
             setIsLoaded(true);
             setIsCurrentLoading(false);
@@ -32,7 +45,7 @@ const UsernameInput = ({ setIsLoaded, setPlayerData, setMmrData }: Props) => {
     };
 
     const getMmrData = async (username: string, tagline: string) => {
-        //TODO: Currently only queries na region
+        // TODO: Currently only queries na region
         const resMmrData = await fetch(
             `https://api.henrikdev.xyz/valorant/v1/mmr/na/${username}/${tagline}`
         );
@@ -50,6 +63,18 @@ const UsernameInput = ({ setIsLoaded, setPlayerData, setMmrData }: Props) => {
 
         await resPlayerData.json().then((d) => {
             setPlayerData(d.data);
+        });
+    };
+
+    const getRecentMatchData = async (username: string, tagline: string) => {
+        // TODO: Currently only queries na region and unrated matches
+        const resPlayerData = await fetch(
+            `https://api.henrikdev.xyz/valorant/v3/matches/na/${username}/${tagline}?filter=unrated`
+        );
+
+        await resPlayerData.json().then((d) => {
+            setRecentMatchData(d.data);
+            console.log(d.data);
         });
     };
 

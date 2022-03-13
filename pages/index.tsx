@@ -1,5 +1,7 @@
 import type { NextPage } from 'next';
 import { useState } from 'react';
+import PlayerSummary from '../components/PlayerSummary';
+import RecentMatches from '../components/RecentMatches';
 import UsernameInput from '../components/usernameInput';
 import styles from '../styles/Home.module.css';
 
@@ -28,6 +30,7 @@ const Home: NextPage = () => {
         name: '',
         tag: '',
     });
+    const [recentMatchData, setRecentMatchData] = useState({});
 
     return (
         <div className={styles.container}>
@@ -36,15 +39,16 @@ const Home: NextPage = () => {
                 setIsLoaded={setIsLoaded}
                 setPlayerData={setPlayerData}
                 setMmrData={setMmrData}
+                setRecentMatchData={setRecentMatchData}
             />
 
             {isLoaded ? (
                 <div>
-                    <h1>{playerData.name}</h1>
-                    <img src={playerData.card.small} alt="player icon" />
-                    <h2>Account Level: {playerData.account_level}</h2>
-                    <h2>Rank: {mmrData.currenttierpatched}</h2>
-                    <h2>Elo: {mmrData.elo}</h2>
+                    <PlayerSummary playerData={playerData} mmrData={mmrData} />
+                    <RecentMatches
+                        recentMatchData={recentMatchData}
+                        myPuuid={playerData.puuid}
+                    />
                 </div>
             ) : null}
         </div>
