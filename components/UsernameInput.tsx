@@ -15,6 +15,7 @@ const UsernameInput = ({
 }: Props) => {
     const [isCurrentlyLoading, setIsCurrentLoading] = useState(false);
 
+    // TODO: Check for rate limit response
     const runQuery = async (event: any) => {
         event.preventDefault();
         let promises = [];
