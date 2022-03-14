@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 interface Props {
     recentMatchData: any;
     myPuuid: string;
@@ -18,6 +20,7 @@ const RecentMatches = ({ recentMatchData, myPuuid }: Props) => {
                     {d.teams[myTeam].has_won ? 'Victory' : 'Loss'}{' '}
                     {d.teams[myTeam].rounds_won} - {d.teams[myTeam].rounds_lost}
                 </h3>
+                <Link href={`/match/${d.metadata.matchid}`}>View details</Link>
             </div>
         );
     });
