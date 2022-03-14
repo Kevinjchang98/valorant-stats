@@ -83,6 +83,8 @@ const Match: NextPage = () => {
             {isLoaded ? (
                 <>
                     <h1>{matchData.data.metadata.map}</h1>
+                    <h2>{matchData.data.metadata.cluster}</h2>
+                    <h2>{matchData.data.metadata.mode}</h2>
                     <h2>{matchData.data.metadata.game_start_patched}</h2>
 
                     <h2>Blue team</h2>
