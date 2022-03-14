@@ -8,6 +8,7 @@ const Match: NextPage = () => {
     const router = useRouter();
     const { matchId } = router.query;
 
+    // TODO: Consider useState<any> instead of initializing empty object of correct format
     const [matchData, setMatchData] = useState<any>({});
     const [isLoaded, setIsLoaded] = useState(false);
 
