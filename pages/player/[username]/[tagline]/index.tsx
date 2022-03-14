@@ -8,7 +8,6 @@ const Player: NextPage = () => {
     const router = useRouter();
     const { username, tagline } = router.query;
 
-    const [isCurrentlyLoading, setIsCurrentLoading] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [playerData, setPlayerData] = useState({
         account_level: 0,
@@ -41,7 +40,6 @@ const Player: NextPage = () => {
         tagline: string | string[]
     ) => {
         let promises = [];
-        setIsCurrentLoading(true);
 
         promises.push(getPlayerData(username, tagline));
 
@@ -51,7 +49,6 @@ const Player: NextPage = () => {
 
         Promise.all(promises).then(() => {
             setIsLoaded(true);
-            setIsCurrentLoading(false);
         });
     };
 
