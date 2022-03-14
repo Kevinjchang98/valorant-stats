@@ -4,7 +4,7 @@ import styles from '../styles/MmrPlot.module.css';
 const MmrPlot = ({ data }: any) => {
     const width = 800;
     const height = 300;
-    const margin = { top: 30, right: 30, bottom: 60, left: 220 };
+    const margin = { top: 20, right: 20, bottom: 20, left: 80 };
     const innerWidth: number = width - margin.right - margin.left;
     const innerHeight: number = height - margin.top - margin.bottom;
 
