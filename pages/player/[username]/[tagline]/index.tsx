@@ -41,6 +41,8 @@ const Player: NextPage = () => {
     ) => {
         let promises = [];
 
+        // TODO: Cancel requests when component unmounted: https://stackoverflow.com/questions/54954385/react-useeffect-causing-cant-perform-a-react-state-update-on-an-unmounted-comp
+
         promises.push(getPlayerData(username, tagline));
 
         promises.push(getMmrData(username, tagline));
