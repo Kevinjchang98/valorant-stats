@@ -8,7 +8,6 @@ const Player: NextPage = () => {
     const router = useRouter();
     const { username, tagline } = router.query;
 
-    const [isCurrentlyLoading, setIsCurrentLoading] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [playerData, setPlayerData] = useState({
         account_level: 0,
@@ -41,7 +40,8 @@ const Player: NextPage = () => {
         tagline: string | string[]
     ) => {
         let promises = [];
-        setIsCurrentLoading(true);
+
+        // TODO: Cancel requests when component unmounted: https://stackoverflow.com/questions/54954385/react-useeffect-causing-cant-perform-a-react-state-update-on-an-unmounted-comp
 
         promises.push(getPlayerData(username, tagline));
 
@@ -51,7 +51,6 @@ const Player: NextPage = () => {
 
         Promise.all(promises).then(() => {
             setIsLoaded(true);
-            setIsCurrentLoading(false);
         });
     };
 
