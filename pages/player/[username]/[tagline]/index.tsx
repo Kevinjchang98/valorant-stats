@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import MmrPlot from '../../../../components/MmrPlot';
 import PlayerSummary from '../../../../components/PlayerSummary';
 import RecentMatches from '../../../../components/RecentMatches';
 
@@ -33,6 +34,7 @@ const Player: NextPage = () => {
         tag: '',
     });
     const [recentMatchData, setRecentMatchData] = useState({});
+    const [mmrHistoryData, setMmrHistoryData] = useState<any>({});
 
     // TODO: Check for rate limit and 404 player not found responses
     const runQuery = async (
@@ -48,6 +50,8 @@ const Player: NextPage = () => {
         promises.push(getMmrData(username, tagline));
 
         promises.push(getRecentMatchData(username, tagline));
+
+        promises.push(getMmrHistoryData(username, tagline));
 
         Promise.all(promises).then(() => {
             setIsLoaded(true);
@@ -70,7 +74,7 @@ const Player: NextPage = () => {
         );
 
         await resMmrData.json().then((d) => {
-            console.log(d);
+            // console.log(d);
             setMmrData(d.data);
         });
     };
@@ -99,6 +103,21 @@ const Player: NextPage = () => {
 
         await resPlayerData.json().then((d) => {
             setRecentMatchData(d.data);
+            // console.log(d.data);
+        });
+    };
+
+    const getMmrHistoryData = async (
+        username: string | string[],
+        tagline: string | string[]
+    ) => {
+        // TODO: Currently only queries na region
+        const res = await fetch(
+            `https://api.henrikdev.xyz/valorant/v1/mmr-history/na/${username}/${tagline}`
+        );
+
+        await res.json().then((d) => {
+            setMmrHistoryData(d.data);
             console.log(d.data);
         });
     };
@@ -109,6 +128,7 @@ const Player: NextPage = () => {
             {isLoaded ? (
                 <div>
                     <PlayerSummary playerData={playerData} mmrData={mmrData} />
+                    <MmrPlot data={mmrHistoryData} />
                     <RecentMatches
                         recentMatchData={recentMatchData}
                         myPuuid={playerData.puuid}
