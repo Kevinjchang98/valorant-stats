@@ -47,6 +47,7 @@ const Match: NextPage = () => {
 
                     <p>{`KDA: ${d.stats.kills}/${d.stats.deaths}/${d.stats.assists}`}</p>
 
+                    {/* TODO: Correct headshot percentage calculation; currently allows for over 100% */}
                     <p>{`Headshot percentage: ${format('.0%')(
                         isNaN(d.stats.headshots / d.stats.kills)
                             ? 0
