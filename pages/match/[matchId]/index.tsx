@@ -94,7 +94,9 @@ const Match: NextPage = () => {
                     <h2>Red team</h2>
                     {playerList(matchData.data.players.red)}
                 </>
-            ) : null}
+            ) : (
+                <p>Loading</p>
+            )}
         </>
     );
 };

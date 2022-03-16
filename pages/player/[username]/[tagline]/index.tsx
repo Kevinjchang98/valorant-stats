@@ -134,7 +134,9 @@ const Player: NextPage = () => {
                         myPuuid={playerData.puuid}
                     />
                 </div>
-            ) : null}
+            ) : (
+                <p>Loading</p>
+            )}
         </div>
     );
 };
