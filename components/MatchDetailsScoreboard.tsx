@@ -7,20 +7,20 @@ const MatchDetailsScoreboard = (data: any) => {
     return (
         <table className={styles.table}>
             <tr>
-                <th>Player</th>
-                <th>Score</th>
-                <th>Kills</th>
-                <th>Deaths</th>
-                <th>Assists</th>
-                <th>Team</th>
-                <th>HS %</th>
-                <th>Avg loadout value</th>
-                <th>Overall loadout value</th>
-                <th>Avg money spent</th>
-                <th>Overall money spent</th>
-                <th>AFK rounds</th>
-                <th>Rounds in spawn</th>
-                <th>Outgoing friendly fire</th>
+                <th className={styles.th}>Player</th>
+                <th className={styles.th}>Score</th>
+                <th className={styles.th}>Kills</th>
+                <th className={styles.th}>Deaths</th>
+                <th className={styles.th}>Assists</th>
+                <th className={styles.th}>Team</th>
+                <th className={styles.th}>HS %</th>
+                <th className={styles.th}>Avg loadout value</th>
+                <th className={styles.th}>Overall loadout value</th>
+                <th className={styles.th}>Avg money spent</th>
+                <th className={styles.th}>Overall money spent</th>
+                <th className={styles.th}>AFK rounds</th>
+                <th className={styles.th}>Rounds in spawn</th>
+                <th className={styles.th}>Outgoing friendly fire</th>
             </tr>
             {data.map((d: any) => (
                 <tr>
